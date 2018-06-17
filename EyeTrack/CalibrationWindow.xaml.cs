@@ -20,7 +20,7 @@ namespace EyeTrack
     /// </summary>
     public partial class CalibrationWindow : Window
     {
-        private IEyeTracker _tracker;
+        private readonly IEyeTracker _tracker;
         
         private const int CircleDiameter = 10;
         private readonly Brush _redBrush = new SolidColorBrush(Colors.Red);
@@ -30,10 +30,10 @@ namespace EyeTrack
         private Point? _lastLeftPoint = null;
         private Point? _lastRightPoint = null;
 
-        public CalibrationWindow(IEyeTracker tracker)
+        public CalibrationWindow()
         {
-            _tracker = tracker;
             InitializeComponent();
+            _tracker = App.Tracker;
         }
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)

@@ -10,6 +10,8 @@
         <Label x:Name="DevicesLabel" Content="Выберите устройство Eye Tracker:" HorizontalAlignment="Left" Margin="10,19,0,0" VerticalAlignment="Top" Width="380"/>
         <ComboBox x:Name="DevicesComboBox" HorizontalAlignment="Left" Height="40" Margin="10,56,0,0" VerticalAlignment="Top" Width="370"/>
         <Button x:Name="CalibrateButton" Content="Откалибровать" HorizontalAlignment="Left" Margin="10,112,0,0" VerticalAlignment="Top" Width="370" Background="#FF88B8D9" Click="calibrateButton_Click"/>
+        <Button x:Name="ShowText1Button" Content="Показать текст 1" HorizontalAlignment="Left" Height="31" Margin="10,199,0,0" VerticalAlignment="Top" Width="370" Click="ShowText1Button_Click"/>
+        <TextBox x:Name="NameTextBox" HorizontalAlignment="Left" Height="23" Margin="10,157,0,0" TextWrapping="Wrap" Text="Введите имя" VerticalAlignment="Top" Width="370" TextChanged="NameTextBox_TextChanged"/>
 
     </Grid>
 </Window>

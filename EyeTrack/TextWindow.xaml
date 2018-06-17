@@ -1,0 +1,18 @@
+﻿<Window x:Class="EyeTrack.TextWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EyeTrack"
+        mc:Ignorable="d"
+        Title="TextWindow" ResizeMode="NoResize"
+        Height="{Binding SystemParameters.PrimaryScreenHeight}"
+        Width="{Binding SystemParameters.PrimaryScreenWidth}" WindowStyle="None" WindowStartupLocation="CenterScreen" WindowState="Maximized">
+    <Grid>
+        <TextBox x:Name="TextBox" HorizontalAlignment="Center" Height="700" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Center" Width="700" FontSize="28" FontFamily="Arial" TextAlignment="Justify"/>
+        <Button x:Name="StartButton" Content="Начать" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="90" Click="StartButton_Click"/>
+        <Button x:Name="StopButton" Content="Остановить" HorizontalAlignment="Left" Margin="10,34,0,0" VerticalAlignment="Top" Width="90" IsEnabled="False" Click="StopButton_Click"/>
+        <Label x:Name="GazeCountLabel" Content="Количество считанных точек:" HorizontalAlignment="Left" Margin="541,500,0,0" VerticalAlignment="Top"/>
+
+    </Grid>
+</Window>

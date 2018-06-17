@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using Tobii.Research;
 
 namespace EyeTrack
 {
@@ -13,5 +14,7 @@ namespace EyeTrack
     /// </summary>
     public partial class App : Application
     {
+        public static IEyeTracker Tracker { get; set; }
+        public static string Name { get; set; }
     }
 }
