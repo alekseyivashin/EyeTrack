@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EyeTrack.tracker;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Tobii.Research;
 
 namespace EyeTrack
 {
@@ -23,6 +25,20 @@ namespace EyeTrack
         public MainWindow()
         {
             InitializeComponent();
+            var data = new List<string>(GetTrackersNames());
+            //Console.WriteLine(String.Join(", ", GetTrackersNames()));
+            DevicesComboBox.ItemsSource = data;
+        }
+
+        private static List<string> GetTrackersNames() =>
+            TrackerFinder.GetAllTrackers().Select(tracker => tracker.DeviceName).ToList();
+
+        private void calibrateButton_Click(object sender, RoutedEventArgs e)
+        {
+            var selectedTrackerName = DevicesComboBox.SelectedValue.ToString();
+            var selectedTracker = TrackerFinder.GetByName(selectedTrackerName);
+            var calibrationWindow = new CalibrationWindow(selectedTracker);
+            calibrationWindow.Show();
         }
     }
 }

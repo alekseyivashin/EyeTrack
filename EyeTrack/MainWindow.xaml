@@ -5,8 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EyeTrack"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="400" FontSize="16">
     <Grid>
-        
+        <Label x:Name="DevicesLabel" Content="Выберите устройство Eye Tracker:" HorizontalAlignment="Left" Margin="10,19,0,0" VerticalAlignment="Top" Width="380"/>
+        <ComboBox x:Name="DevicesComboBox" HorizontalAlignment="Left" Height="40" Margin="10,56,0,0" VerticalAlignment="Top" Width="370"/>
+        <Button x:Name="CalibrateButton" Content="Откалибровать" HorizontalAlignment="Left" Margin="10,112,0,0" VerticalAlignment="Top" Width="370" Background="#FF88B8D9" Click="calibrateButton_Click"/>
+
     </Grid>
 </Window>
