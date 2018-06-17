@@ -28,7 +28,7 @@ namespace EyeTrack
         private readonly IEyeTracker _tracker;
         private readonly string _outputFileName;
         private List<GazeDataEventArgs> _gaseList = new List<GazeDataEventArgs>();
-        private int GazeCount = 0;
+        private int _gazeCount = 0;
     
         public TextWindow(string fileName)
         {
