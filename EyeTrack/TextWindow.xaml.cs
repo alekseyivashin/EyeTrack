@@ -2,18 +2,8 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using Newtonsoft.Json;
 using Tobii.Research;
 
@@ -39,7 +29,7 @@ namespace EyeTrack
             var text = ReadFile(fileName);
             TextBox.Text = text;
 
-            _outputFileName = App.Name + "_1_" + DateTime.Now.ToString(CultureInfo.CurrentCulture);
+            _outputFileName = App.Name + DateTime.Now.Ticks / TimeSpan.TicksPerMillisecond + ".txt";
         }
 
         private static string ReadFile(string fileName)
@@ -75,6 +65,7 @@ namespace EyeTrack
             _tracker.GazeDataReceived -= EyeTracker_GazeDataReceived;
             SaveListToFile();
             ClearList();
+            Close();
         }
         
         private void EyeTracker_GazeDataReceived(object sender, GazeDataEventArgs e)
