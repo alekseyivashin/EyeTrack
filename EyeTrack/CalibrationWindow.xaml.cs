@@ -1,15 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Tobii.Research;
 
@@ -30,10 +21,24 @@ namespace EyeTrack
         private Point? _lastLeftPoint = null;
         private Point? _lastRightPoint = null;
 
-        public CalibrationWindow()
+        public CalibrationWindow(string personName)
         {
             InitializeComponent();
             _tracker = App.Tracker;
+        }
+
+        private void StartButton_Click(object sender, RoutedEventArgs e)
+        {
+            ActionsPanel.Visibility = Visibility.Hidden;
+            LegendPanel.Visibility = Visibility.Hidden;
+            Calibrate();
+        }
+
+        private void VisualizeButton_Click(object sender, RoutedEventArgs e)
+        {
+            ActionsPanel.Visibility = Visibility.Hidden;
+            VisualizationPanel.Visibility = Visibility.Visible;
+            _tracker.GazeDataReceived += EyeTracker_GazeDataReceived;
         }
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)
@@ -65,13 +70,6 @@ namespace EyeTrack
         private void ClearSurface()
         {
             PaintSurface.Children.Clear();
-        }
-
-        private void StartButton_Click(object sender, RoutedEventArgs e)
-        {
-            ActionsPanel.Visibility = Visibility.Hidden;
-            LegendPanel.Visibility = Visibility.Hidden;
-            Calibrate();
         }
 
         private async void Calibrate()
@@ -199,13 +197,6 @@ namespace EyeTrack
             PaintSurface.Children.Add(line);
         }
 
-        private void VisualizeButton_Click(object sender, RoutedEventArgs e)
-        {
-            ActionsPanel.Visibility = Visibility.Hidden;
-            VisualizationPanel.Visibility = Visibility.Visible;
-            _tracker.GazeDataReceived += EyeTracker_GazeDataReceived;
-        }
-
         private void ClearButton_Click(object sender, RoutedEventArgs e)
         {
             ClearSurface();
@@ -251,6 +242,15 @@ namespace EyeTrack
                     }
                 }
             }));
+        }
+
+        private void Window_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if(e.Key == System.Windows.Input.Key.Space)
+            {
+                MessageBox.Show("Пробел нажат!", "Confirmation");
+                e.Handled = true;
+            }
         }
     }
 }

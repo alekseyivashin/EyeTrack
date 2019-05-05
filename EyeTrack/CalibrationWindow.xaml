@@ -7,12 +7,13 @@
         mc:Ignorable="d"
         Title="CalibrationWindow" ResizeMode="NoResize"
         Height="{Binding SystemParameters.PrimaryScreenHeight}"
-        Width="{Binding SystemParameters.PrimaryScreenWidth}" WindowStyle="None" WindowStartupLocation="CenterScreen" WindowState="Maximized">
+        Width="{Binding SystemParameters.PrimaryScreenWidth}" WindowStyle="None" WindowStartupLocation="CenterScreen" WindowState="Maximized" KeyUp="Window_KeyUp">
     <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
         <Canvas x:Name="PaintSurface" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
             <Canvas.Background>
                 <SolidColorBrush Color="White" Opacity="0"/>
             </Canvas.Background>
+            <Label x:Name="MessageLabel" Content="Для начала калибровки нажмите на клавишу &quot;Пробел&quot;" HorizontalContentAlignment="Center" Height="43" Canvas.Left="49" Canvas.Top="458" Width="696" FontSize="18" VerticalContentAlignment="Center"/>
         </Canvas>
         <StackPanel x:Name="LegendPanel" Width="100" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="200,0,0,0" Visibility="Hidden">
             <Label Content="■ Left Eye" Foreground="Blue"/>
