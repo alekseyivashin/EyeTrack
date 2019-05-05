@@ -1,4 +1,5 @@
-﻿using EyeTrack.tracker;
+﻿using System;
+using EyeTrack.tracker;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -44,7 +45,7 @@ namespace EyeTrack
             calibrationWindow.Show();
         }
 
-        private void IdentifyButton_Click(object sender, RoutedEventArgs e)
+        private void ShowTextWindow(int textIndex)
         {
             var personName = NameTextBox.Text;
             App.Name = personName;
@@ -54,9 +55,39 @@ namespace EyeTrack
             }
             else
             {
-                var textWindow = new TextWindow(1);
+                var textWindow = new TextWindow(textIndex);
                 textWindow.Show();
             }
+        }
+
+        private void Text1Button_Click(object sender, RoutedEventArgs e)
+        {
+            ShowTextWindow(1);
+        }
+
+        private void Text2Button_Click(object sender, RoutedEventArgs e)
+        {
+            ShowTextWindow(2);
+        }
+
+        private void Text3Button_Click(object sender, RoutedEventArgs e)
+        {
+            ShowTextWindow(3);
+        }
+
+        private void Text4Button_Click(object sender, RoutedEventArgs e)
+        {
+            ShowTextWindow(4);
+        }
+
+        private void Text5Button_Click(object sender, RoutedEventArgs e)
+        {
+            ShowTextWindow(5);
+        }
+
+        private void Text6Button_Click(object sender, RoutedEventArgs e)
+        {
+            ShowTextWindow(6);
         }
     }
 }

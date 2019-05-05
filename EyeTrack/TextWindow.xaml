@@ -7,11 +7,10 @@
         mc:Ignorable="d"
         Title="TextWindow" ResizeMode="NoResize"
         Height="{Binding SystemParameters.PrimaryScreenHeight}"
-        Width="{Binding SystemParameters.PrimaryScreenWidth}" WindowStyle="None" WindowStartupLocation="CenterScreen" WindowState="Maximized">
+        Width="{Binding SystemParameters.PrimaryScreenWidth}" WindowStyle="None" WindowStartupLocation="CenterScreen" WindowState="Maximized" KeyUp="Window_KeyUp">
     <Grid>
         <TextBox x:Name="TextBox" HorizontalAlignment="Center" Height="700" TextWrapping="Wrap" VerticalAlignment="Center" Width="1000" FontSize="30" FontFamily="Courier New" TextAlignment="Justify" TextBlock.LineHeight="40" TextBlock.LineStackingStrategy="BlockLineHeight"/>
-        <Button x:Name="StartButton" Content="Начать" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="90" Click="StartButton_Click"/>
-        <Button x:Name="StopButton" Content="Остановить" HorizontalAlignment="Left" Margin="10,34,0,0" VerticalAlignment="Top" Width="90" IsEnabled="False" Click="StopButton_Click"/>
+        <Label x:Name="MessageLabel" Content="Нажмите клавишу &quot;Пробел&quot; и начните читать" HorizontalContentAlignment="Center" Height="43" Width="696" FontSize="24" VerticalContentAlignment="Center" VerticalAlignment="Top" HorizontalAlignment="Center"/>
 
     </Grid>
 </Window>

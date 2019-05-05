@@ -206,33 +206,31 @@ namespace EyeTrack
 
         private void Window_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
         {
-            if (e.Key == System.Windows.Input.Key.Space)
+            if (e.Key != System.Windows.Input.Key.Space) return;
+            switch (_status)
             {
-                switch (_status)
-                {
-                    case Status.NotStarted:
-                        MessageLabel.Visibility = Visibility.Hidden;
-                        _status = Status.Calibration;
-                        Calibrate();
-                        break;
-                    case Status.CalibrationCompleted:
-                        MessageLabel.Content = "Режим визуализации. Нажмите \"Пробел\", чтобы остановить";
-                        _tracker.GazeDataReceived += EyeTracker_GazeDataReceived;
-                        _status = Status.Visualization;
-                        break;
-                    case Status.Visualization:
-                        MessageLabel.Content = "Визуализация закончена. Нажмите \"Пробел\", чтобы выйти";
-                        _tracker.GazeDataReceived -= EyeTracker_GazeDataReceived;
-                        _status = Status.VisualizationCompleted;
-                        break;
-                    case Status.VisualizationCompleted:
-                        ClearSurface();
-                        Close();
-                        break;
-                }
-
-                e.Handled = true;
+                case Status.NotStarted:
+                    MessageLabel.Visibility = Visibility.Hidden;
+                    _status = Status.Calibration;
+                    Calibrate();
+                    break;
+                case Status.CalibrationCompleted:
+                    MessageLabel.Content = "Режим визуализации. Нажмите \"Пробел\", чтобы остановить";
+                    _tracker.GazeDataReceived += EyeTracker_GazeDataReceived;
+                    _status = Status.Visualization;
+                    break;
+                case Status.Visualization:
+                    MessageLabel.Content = "Визуализация закончена. Нажмите \"Пробел\", чтобы выйти";
+                    _tracker.GazeDataReceived -= EyeTracker_GazeDataReceived;
+                    _status = Status.VisualizationCompleted;
+                    break;
+                case Status.VisualizationCompleted:
+                    ClearSurface();
+                    Close();
+                    break;
             }
+
+            e.Handled = true;
         }
     }
 

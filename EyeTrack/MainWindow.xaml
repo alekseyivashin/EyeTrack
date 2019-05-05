@@ -5,13 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EyeTrack"
         mc:Ignorable="d"
-        Title="MainWindow" Height="369.328" Width="402.521" FontSize="16">
+        Title="MainWindow" Height="544.328" Width="402.521" FontSize="16">
     <Grid>
         <Label x:Name="DeviceLabel" Content="Устройство Eye Tracker: " HorizontalAlignment="Left" Margin="10,19,0,0" VerticalAlignment="Top" Width="370"/>
         <Button x:Name="AddButton" Content="Добавить в базу" HorizontalAlignment="Left" Margin="10,164,0,0" VerticalAlignment="Top" Width="370" Background="#FF88B8D9" Click="AddButton_Click" Height="35"/>
-        <Button x:Name="IdentifyButton" Content="Показать текст 1" HorizontalAlignment="Left" Height="31" Margin="10,273,0,0" VerticalAlignment="Top" Width="370" Click="IdentifyButton_Click"/>
+        <Button x:Name="Text1Button" Content="Показать текст 1" HorizontalAlignment="Left" Height="31" Margin="10,276,0,0" VerticalAlignment="Top" Width="370" Click="Text1Button_Click"/>
         <TextBox x:Name="NameTextBox" HorizontalAlignment="Left" Height="29" Margin="10,115,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="370"/>
         <Button x:Name="SearchDeviceButton" Content="Найти устройство" HorizontalAlignment="Left" Height="33" Margin="10,55,0,0" VerticalAlignment="Top" Width="370" Click="SearchDeviceButton_Click"/>
+        <Button x:Name="Text2Button" Content="Показать текст 2" HorizontalAlignment="Left" Height="31" Margin="10,312,0,0" VerticalAlignment="Top" Width="370" Click="Text2Button_Click"/>
+        <Button x:Name="Text3Button" Content="Показать текст 3" HorizontalAlignment="Left" Height="31" Margin="10,348,0,0" VerticalAlignment="Top" Width="370" Click="Text3Button_Click"/>
+        <Button x:Name="Text4Button" Content="Показать текст 4" HorizontalAlignment="Left" Height="31" Margin="10,384,0,0" VerticalAlignment="Top" Width="370" Click="Text4Button_Click"/>
+        <Button x:Name="Text5Button" Content="Показать текст 5" HorizontalAlignment="Left" Height="31" Margin="10,420,0,0" VerticalAlignment="Top" Width="370" Click="Text5Button_Click"/>
+        <Button x:Name="Text6Button" Content="Показать текст 6" HorizontalAlignment="Left" Height="31" Margin="10,456,0,0" VerticalAlignment="Top" Width="370" Click="Text6Button_Click"/>
 
     </Grid>
 </Window>
