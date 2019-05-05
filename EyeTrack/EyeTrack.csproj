@@ -135,6 +135,8 @@
     <Compile Include="TextWindow.xaml.cs">
       <DependentUpon>TextWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="tracker\Test.cs" />
+    <Compile Include="tracker\TextUtils.cs" />
     <Compile Include="tracker\TrackerFinder.cs" />
     <Page Include="CalibrationWindow.xaml">
       <SubType>Designer</SubType>

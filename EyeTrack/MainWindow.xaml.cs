@@ -13,6 +13,7 @@ namespace EyeTrack
         public MainWindow()
         {
             InitializeComponent();
+            this.DataContext = this;
         }
 
         private void SearchDeviceButton_Click(object sender, RoutedEventArgs e)
@@ -29,33 +30,33 @@ namespace EyeTrack
                 }
                 else
                 {
-                    MessageBox.Show("Устройства не были найдены!", "Confirmation", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Устройства не были найдены!", "Confirmation", MessageBoxButton.OK,
+                        MessageBoxImage.Error);
                 }
+
                 SearchDeviceButton.IsEnabled = true;
             }
-
         }
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
+            var calibrationWindow = new CalibrationWindow();
+            calibrationWindow.Show();
+        }
+
+        private void IdentifyButton_Click(object sender, RoutedEventArgs e)
+        {
             var personName = NameTextBox.Text;
+            App.Name = personName;
             if (string.IsNullOrWhiteSpace(personName))
             {
                 MessageBox.Show("Пожалуйста, введите имя!", "Confirmation", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             else
             {
-                var calibrationWindow = new CalibrationWindow(personName);
-                calibrationWindow.Show();
+                var textWindow = new TextWindow(1);
+                textWindow.Show();
             }
-
         }
-
-        private void IdentifyButton_Click(object sender, RoutedEventArgs e)
-        {
-            var textWindow = new TextWindow("text1.txt");
-            textWindow.Show();
-        }
-
     }
 }

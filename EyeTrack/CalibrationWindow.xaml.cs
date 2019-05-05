@@ -6,15 +6,12 @@ using Tobii.Research;
 
 namespace EyeTrack
 {
-    /// <summary>
-    /// Логика взаимодействия для CalibrationWindow.xaml
-    /// </summary>
-    public partial class CalibrationWindow : Window
+    public partial class CalibrationWindow
     {
         private readonly IEyeTracker _tracker;
 
-        private Status _status = Status.NOT_STARTED;
-        
+        private Status _status = Status.NotStarted;
+
         private const int CircleDiameter = 10;
         private readonly Brush _redBrush = new SolidColorBrush(Colors.Red);
         private readonly Brush _greenBrush = new SolidColorBrush(Colors.Green);
@@ -23,7 +20,7 @@ namespace EyeTrack
         private Point? _lastLeftPoint = null;
         private Point? _lastRightPoint = null;
 
-        public CalibrationWindow(string personName)
+        public CalibrationWindow()
         {
             InitializeComponent();
             _tracker = App.Tracker;
@@ -64,7 +61,8 @@ namespace EyeTrack
             await calibration.EnterCalibrationModeAsync();
             // Define the points on screen we should calibrate at.
             // The coordinates are normalized, i.e. (0.0f, 0.0f) is the upper left corner and (1.0f, 1.0f) is the lower right corner.
-            var pointsToCalibrate = new NormalizedPoint2D[] {
+            var pointsToCalibrate = new[]
+            {
                 new NormalizedPoint2D(0.5f, 0.5f),
                 new NormalizedPoint2D(0.2f, 0.5f),
                 new NormalizedPoint2D(0.8f, 0.5f),
@@ -87,8 +85,10 @@ namespace EyeTrack
                     // Not all eye tracker models will fail at this point, but instead fail on ComputeAndApply.
                     await calibration.CollectDataAsync(point);
                 }
+
                 ClearSurface();
             }
+
             // Compute and apply the calibration.
             var calibrationResult = await calibration.ComputeAndApplyAsync();
             var drawErrorCount = 0;
@@ -125,8 +125,9 @@ namespace EyeTrack
                     }
                 }
             }
+
             LegendPanel.Visibility = Visibility.Visible;
-            _status = Status.CALIBRATION_COMPLETED;
+            _status = Status.CalibrationCompleted;
             MessageLabel.Content = "Калибровка завершена. Нажмите \"Пробел\" для визуализации";
             MessageLabel.Visibility = Visibility.Visible;
 
@@ -134,6 +135,7 @@ namespace EyeTrack
             {
                 MessageBox.Show($"{drawErrorCount} points were not been drawn");
             }
+
             await calibration.LeaveCalibrationModeAsync();
         }
 
@@ -178,7 +180,8 @@ namespace EyeTrack
                         var tmp = ToPoint(gazePoint.PositionOnDisplayArea);
                         DrawLine(_lastLeftPoint.Value, tmp, _blueBrush);
                         _lastLeftPoint = tmp;
-                    } else
+                    }
+                    else
                     {
                         _lastLeftPoint = ToPoint(gazePoint.PositionOnDisplayArea);
                     }
@@ -203,39 +206,42 @@ namespace EyeTrack
 
         private void Window_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
         {
-            if(e.Key == System.Windows.Input.Key.Space)
+            if (e.Key == System.Windows.Input.Key.Space)
             {
-                switch (_status){
-                    case Status.NOT_STARTED:
+                switch (_status)
+                {
+                    case Status.NotStarted:
                         MessageLabel.Visibility = Visibility.Hidden;
+                        _status = Status.Calibration;
                         Calibrate();
                         break;
-                    case Status.CALIBRATION_COMPLETED:
+                    case Status.CalibrationCompleted:
                         MessageLabel.Content = "Режим визуализации. Нажмите \"Пробел\", чтобы остановить";
                         _tracker.GazeDataReceived += EyeTracker_GazeDataReceived;
-                        _status = Status.VISUALIZATION;
+                        _status = Status.Visualization;
                         break;
-                    case Status.VISUALIZATION:
+                    case Status.Visualization:
                         MessageLabel.Content = "Визуализация закончена. Нажмите \"Пробел\", чтобы выйти";
                         _tracker.GazeDataReceived -= EyeTracker_GazeDataReceived;
-                        _status = Status.VISUALIZATION_COMPLETED;
+                        _status = Status.VisualizationCompleted;
                         break;
-                    case Status.VISUALIZATION_COMPLETED:
+                    case Status.VisualizationCompleted:
                         ClearSurface();
                         Close();
                         break;
                 }
+
                 e.Handled = true;
             }
         }
     }
 
-    enum Status
+    internal enum Status
     {
-        NOT_STARTED,
-        CALIBRATION,
-        CALIBRATION_COMPLETED,
-        VISUALIZATION,
-        VISUALIZATION_COMPLETED
+        NotStarted,
+        Calibration,
+        CalibrationCompleted,
+        Visualization,
+        VisualizationCompleted
     }
 }

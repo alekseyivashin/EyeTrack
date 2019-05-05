@@ -9,10 +9,9 @@
         Height="{Binding SystemParameters.PrimaryScreenHeight}"
         Width="{Binding SystemParameters.PrimaryScreenWidth}" WindowStyle="None" WindowStartupLocation="CenterScreen" WindowState="Maximized">
     <Grid>
-        <TextBox x:Name="TextBox" HorizontalAlignment="Center" Height="700" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Center" Width="700" FontSize="28" FontFamily="Arial" TextAlignment="Justify"/>
+        <TextBox x:Name="TextBox" HorizontalAlignment="Center" Height="700" TextWrapping="Wrap" VerticalAlignment="Center" Width="1000" FontSize="30" FontFamily="Courier New" TextAlignment="Justify" TextBlock.LineHeight="40" TextBlock.LineStackingStrategy="BlockLineHeight"/>
         <Button x:Name="StartButton" Content="Начать" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="90" Click="StartButton_Click"/>
         <Button x:Name="StopButton" Content="Остановить" HorizontalAlignment="Left" Margin="10,34,0,0" VerticalAlignment="Top" Width="90" IsEnabled="False" Click="StopButton_Click"/>
-        <Label x:Name="GazeCountLabel" Content="Количество считанных точек:" HorizontalAlignment="Left" Margin="541,500,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>
