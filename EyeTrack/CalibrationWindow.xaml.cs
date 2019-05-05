@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EyeTrack.tracker;
+using System;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Shapes;
@@ -12,6 +13,8 @@ namespace EyeTrack
     public partial class CalibrationWindow : Window
     {
         private readonly IEyeTracker _tracker;
+
+        private Status _status = Status.NOT_STARTED;
         
         private const int CircleDiameter = 10;
         private readonly Brush _redBrush = new SolidColorBrush(Colors.Red);
@@ -25,25 +28,6 @@ namespace EyeTrack
         {
             InitializeComponent();
             _tracker = App.Tracker;
-        }
-
-        private void StartButton_Click(object sender, RoutedEventArgs e)
-        {
-            ActionsPanel.Visibility = Visibility.Hidden;
-            LegendPanel.Visibility = Visibility.Hidden;
-            Calibrate();
-        }
-
-        private void VisualizeButton_Click(object sender, RoutedEventArgs e)
-        {
-            ActionsPanel.Visibility = Visibility.Hidden;
-            VisualizationPanel.Visibility = Visibility.Visible;
-            _tracker.GazeDataReceived += EyeTracker_GazeDataReceived;
-        }
-
-        private void CloseButton_Click(object sender, RoutedEventArgs e)
-        {
-            Close();
         }
 
         private void DrawCircle(Point point)
@@ -126,7 +110,8 @@ namespace EyeTrack
                     if (double.IsNaN(leftPoint.X) || double.IsNaN(leftPoint.Y))
                     {
                         drawErrorCount++;
-                    } else
+                    }
+                    else
                     {
                         DrawLine(pointPosition, leftPoint, leftValidity ? _blueBrush : _redBrush);
                     }
@@ -142,30 +127,15 @@ namespace EyeTrack
                 }
             }
             LegendPanel.Visibility = Visibility.Visible;
-            ActionsPanel.Visibility = Visibility.Visible;
+            _status = Status.CALIBRATION_COMPLETED;
+            MessageLabel.Content = "Калибровка завершена. Нажмите \"Пробел\" для визуализации";
+            MessageLabel.Visibility = Visibility.Visible;
 
             if (drawErrorCount > 0)
             {
                 MessageBox.Show($"{drawErrorCount} points were not been drawn");
             }
-            //WriteLog("Compute and apply returned {0} and collected at {1} points.",
-            //    calibrationResult.Status, calibrationResult.CalibrationPoints.Count);
-            // Analyze the data and maybe remove points that weren't good.
-            //calibration.DiscardData(new NormalizedPoint2D(0.1f, 0.1f));
-            // Redo collection at the discarded point.
-            //WriteLog("Show point on screen at ({0}, {1})", 0.1f, 0.1f);
-            //await calibration.CollectDataAsync(new NormalizedPoint2D(0.1f, 0.1f));
-            // Compute and apply again.
-            //calibrationResult = await calibration.ComputeAndApplyAsync();
-            //WriteLog("Second compute and apply returned {0} and collected at {1} points.",
-            //calibrationResult.Status, calibrationResult.CalibrationPoints.Count);
-            // See that you're happy with the result.
-            // The calibration is done. Leave calibration mode.
             await calibration.LeaveCalibrationModeAsync();
-            //WriteLog("Calibration done");
-            //TrackBox tb = eyeTracker.GetTrackBox();
-            //WriteLog("trackBox: backLowerLeft: {0}; backLowerRight: {1}; backUpperLeft: {2}; backUpperRight: {3}", FormatPoint3D(tb.BackLowerLeft), FormatPoint3D(tb.BackLowerRight), FormatPoint3D(tb.BackUpperLeft), FormatPoint3D(tb.BackUpperRight));
-            //WriteLog("trackBox: frontLowerLeft: {0}; FrontLowerRight: {1}; FrontUpperLeft: {2}; FrontUpperRight: {3}", FormatPoint3D(tb.FrontLowerLeft), FormatPoint3D(tb.FrontLowerRight), FormatPoint3D(tb.FrontUpperLeft), FormatPoint3D(tb.FrontUpperRight));
         }
 
         private Point ToPoint(NormalizedPoint2D point)
@@ -195,18 +165,6 @@ namespace EyeTrack
             };
 
             PaintSurface.Children.Add(line);
-        }
-
-        private void ClearButton_Click(object sender, RoutedEventArgs e)
-        {
-            ClearSurface();
-        }
-
-        private void StopButton_Click(object sender, RoutedEventArgs e)
-        {
-            ActionsPanel.Visibility = Visibility.Visible;
-            VisualizationPanel.Visibility = Visibility.Hidden;
-            _tracker.GazeDataReceived -= EyeTracker_GazeDataReceived;
         }
 
         private void EyeTracker_GazeDataReceived(object sender, GazeDataEventArgs e)
@@ -248,9 +206,37 @@ namespace EyeTrack
         {
             if(e.Key == System.Windows.Input.Key.Space)
             {
-                MessageBox.Show("Пробел нажат!", "Confirmation");
+                switch (_status){
+                    case Status.NOT_STARTED:
+                        MessageLabel.Visibility = Visibility.Hidden;
+                        Calibrate();
+                        break;
+                    case Status.CALIBRATION_COMPLETED:
+                        MessageLabel.Content = "Режим визуализации. Нажмите \"Пробел\", чтобы остановить";
+                        _tracker.GazeDataReceived += EyeTracker_GazeDataReceived;
+                        _status = Status.VISUALIZATION;
+                        break;
+                    case Status.VISUALIZATION:
+                        MessageLabel.Content = "Визуализация закончена. Нажмите \"Пробел\", чтобы выйти";
+                        _tracker.GazeDataReceived -= EyeTracker_GazeDataReceived;
+                        _status = Status.VISUALIZATION_COMPLETED;
+                        break;
+                    case Status.VISUALIZATION_COMPLETED:
+                        ClearSurface();
+                        Close();
+                        break;
+                }
                 e.Handled = true;
             }
         }
+    }
+
+    enum Status
+    {
+        NOT_STARTED,
+        CALIBRATION,
+        CALIBRATION_COMPLETED,
+        VISUALIZATION,
+        VISUALIZATION_COMPLETED
     }
 }

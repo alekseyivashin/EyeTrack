@@ -13,21 +13,12 @@
             <Canvas.Background>
                 <SolidColorBrush Color="White" Opacity="0"/>
             </Canvas.Background>
-            <Label x:Name="MessageLabel" Content="Для начала калибровки нажмите на клавишу &quot;Пробел&quot;" HorizontalContentAlignment="Center" Height="43" Canvas.Left="49" Canvas.Top="458" Width="696" FontSize="18" VerticalContentAlignment="Center"/>
+            <Label x:Name="MessageLabel" Content="Для начала калибровки нажмите на клавишу &quot;Пробел&quot;" HorizontalContentAlignment="Center" Height="43" Width="696" FontSize="24" VerticalContentAlignment="Center" VerticalAlignment="Top" HorizontalAlignment="Center"/>
         </Canvas>
-        <StackPanel x:Name="LegendPanel" Width="100" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="200,0,0,0" Visibility="Hidden">
+        <StackPanel x:Name="LegendPanel" Width="100" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="100,0,0,100" Visibility="Hidden">
             <Label Content="■ Left Eye" Foreground="Blue"/>
             <Label Content="■ Right Eye" Foreground="Lime"/>
             <Label Content="■ Invalid" Foreground="Red"/>
-        </StackPanel>
-        <StackPanel x:Name="ActionsPanel" Width="100" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,200,0" Visibility="Visible">
-            <Button x:Name="StartButton" Content="Start" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center" Width="75" Click="StartButton_Click"/>
-            <Button x:Name="VisualizeButton" Content="Visualize" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Center" Width="75" Click="VisualizeButton_Click"/>
-            <Button x:Name="CloseButton" Content="Close" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Center" Width="75" Click="CloseButton_Click"/>
-        </StackPanel>
-        <StackPanel x:Name="VisualizationPanel" Width="100" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,10,10,0" Visibility="Hidden">
-            <Button x:Name="ClearButton" Content="Clear" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center" Width="75" Click="ClearButton_Click"/>
-            <Button x:Name="StopButton" Content="Stop" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Center" Width="75" Click="StopButton_Click"/>
         </StackPanel>
     </Grid>
 </Window>
