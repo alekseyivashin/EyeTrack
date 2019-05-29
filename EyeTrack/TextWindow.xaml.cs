@@ -53,17 +53,17 @@ namespace EyeTrack
                     MessageLabel.Visibility = Visibility.Hidden;
                     TextBox.Visibility = Visibility.Visible;
                     _status = ReadingStatus.Reading;
-                    _tracker.GazeDataReceived += EyeTracker_GazeDataReceived;
+                    //_tracker.GazeDataReceived += EyeTracker_GazeDataReceived;
                     break;
                 case ReadingStatus.Reading:
-                    _tracker.GazeDataReceived -= EyeTracker_GazeDataReceived;
+                    //_tracker.GazeDataReceived -= EyeTracker_GazeDataReceived;
                     MessageLabel.Content = "Чтение закончено. Нажмите \"Пробел\", чтобы выйти";
                     MessageLabel.Visibility = Visibility.Visible;
                     TextBox.Visibility = Visibility.Hidden;
                     _status = ReadingStatus.ReadingCompleted;
                     break;
                 case ReadingStatus.ReadingCompleted:
-                    SaveListToFile();
+                    //SaveListToFile();
                     ClearList();
                     Close();
                     break;

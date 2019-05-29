@@ -1,22 +1,20 @@
-﻿<Window x:Class="EyeTrack.MainWindow"
+﻿<Window
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EyeTrack"
+        xmlns:System="clr-namespace:System;assembly=mscorlib" x:Class="EyeTrack.MainWindow"
         mc:Ignorable="d"
-        Title="MainWindow" Height="544.328" Width="402.521" FontSize="16">
+        Title="Идентификация" Height="248.531" Width="634.247" FontSize="16">
     <Grid>
-        <Label x:Name="DeviceLabel" Content="Устройство Eye Tracker: " HorizontalAlignment="Left" Margin="10,19,0,0" VerticalAlignment="Top" Width="370"/>
-        <Button x:Name="AddButton" Content="Добавить в базу" HorizontalAlignment="Left" Margin="10,164,0,0" VerticalAlignment="Top" Width="370" Background="#FF88B8D9" Click="AddButton_Click" Height="35"/>
-        <Button x:Name="Text1Button" Content="Показать текст 1" HorizontalAlignment="Left" Height="31" Margin="10,276,0,0" VerticalAlignment="Top" Width="370" Click="Text1Button_Click"/>
-        <TextBox x:Name="NameTextBox" HorizontalAlignment="Left" Height="29" Margin="10,115,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="370"/>
-        <Button x:Name="SearchDeviceButton" Content="Найти устройство" HorizontalAlignment="Left" Height="33" Margin="10,55,0,0" VerticalAlignment="Top" Width="370" Click="SearchDeviceButton_Click"/>
-        <Button x:Name="Text2Button" Content="Показать текст 2" HorizontalAlignment="Left" Height="31" Margin="10,312,0,0" VerticalAlignment="Top" Width="370" Click="Text2Button_Click"/>
-        <Button x:Name="Text3Button" Content="Показать текст 3" HorizontalAlignment="Left" Height="31" Margin="10,348,0,0" VerticalAlignment="Top" Width="370" Click="Text3Button_Click"/>
-        <Button x:Name="Text4Button" Content="Показать текст 4" HorizontalAlignment="Left" Height="31" Margin="10,384,0,0" VerticalAlignment="Top" Width="370" Click="Text4Button_Click"/>
-        <Button x:Name="Text5Button" Content="Показать текст 5" HorizontalAlignment="Left" Height="31" Margin="10,420,0,0" VerticalAlignment="Top" Width="370" Click="Text5Button_Click"/>
-        <Button x:Name="Text6Button" Content="Показать текст 6" HorizontalAlignment="Left" Height="31" Margin="10,456,0,0" VerticalAlignment="Top" Width="370" Click="Text6Button_Click"/>
+        <Label x:Name="DeviceLabel" Content="Устройство Eye Tracker: Tobii Pro X2-30" HorizontalAlignment="Left" Margin="10,19,0,0" VerticalAlignment="Top" Width="370"/>
+        <Button x:Name="AddButton" Content="Добавить в базу" HorizontalAlignment="Left" Margin="161,115,0,0" VerticalAlignment="Top" Width="147" Background="#FF88B8D9" Click="AddButton_Click" Height="35"/>
+        <TextBox x:Name="NameTextBox" HorizontalAlignment="Left" Height="35" Margin="10,115,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="140" Text="Александр" FontSize="20"/>
+        <Button x:Name="SearchDeviceButton" Content="Найти устройство" HorizontalAlignment="Left" Height="33" Margin="10,55,0,0" VerticalAlignment="Top" Width="298" Click="SearchDeviceButton_Click"/>
+        <Button Content="Проверить" HorizontalAlignment="Left" Margin="10,163,0,0" VerticalAlignment="Top" Width="298" Height="33" Click="Button_Click"/>
+        <Label Content="Ваша предполагаемая личность:" HorizontalAlignment="Left" Margin="333,55,0,0" VerticalAlignment="Top"/>
+        <Label Content="Александр" HorizontalAlignment="Left" Margin="333,91,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="22"/>
 
     </Grid>
 </Window>
