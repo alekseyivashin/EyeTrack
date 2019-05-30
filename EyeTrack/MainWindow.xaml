@@ -6,15 +6,25 @@
         xmlns:local="clr-namespace:EyeTrack"
         xmlns:System="clr-namespace:System;assembly=mscorlib" x:Class="EyeTrack.MainWindow"
         mc:Ignorable="d"
-        Title="Идентификация" Height="248.531" Width="634.247" FontSize="16">
+        Title="Идентификация" Height="293.531" Width="634.247" FontSize="16">
     <Grid>
-        <Label x:Name="DeviceLabel" Content="Устройство Eye Tracker: Tobii Pro X2-30" HorizontalAlignment="Left" Margin="10,19,0,0" VerticalAlignment="Top" Width="370"/>
-        <Button x:Name="AddButton" Content="Добавить в базу" HorizontalAlignment="Left" Margin="161,115,0,0" VerticalAlignment="Top" Width="147" Background="#FF88B8D9" Click="AddButton_Click" Height="35"/>
-        <TextBox x:Name="NameTextBox" HorizontalAlignment="Left" Height="35" Margin="10,115,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="140" Text="Александр" FontSize="20"/>
-        <Button x:Name="SearchDeviceButton" Content="Найти устройство" HorizontalAlignment="Left" Height="33" Margin="10,55,0,0" VerticalAlignment="Top" Width="298" Click="SearchDeviceButton_Click"/>
-        <Button Content="Проверить" HorizontalAlignment="Left" Margin="10,163,0,0" VerticalAlignment="Top" Width="298" Height="33" Click="Button_Click"/>
-        <Label Content="Ваша предполагаемая личность:" HorizontalAlignment="Left" Margin="333,55,0,0" VerticalAlignment="Top"/>
-        <Label Content="Александр" HorizontalAlignment="Left" Margin="333,91,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="22"/>
+        <Label x:Name="DeviceLabel" Content="Устройство Eye Tracker: Tobii Pro X2-30" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="298"/>
+        <Button x:Name="AddButton" Content="Добавить в базу" HorizontalAlignment="Left" Margin="10,132,0,0" VerticalAlignment="Top" Width="298" Background="#FF88B8D9" Click="AddButton_Click" Height="35"/>
+        <TextBox x:Name="NameTextBox" HorizontalAlignment="Left" Height="35" Margin="10,92,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="298" Text="Александр" FontSize="20"/>
+        <Button x:Name="SearchDeviceButton" Content="Найти устройство" HorizontalAlignment="Left" Height="33" Margin="10,46,0,0" VerticalAlignment="Top" Width="298" Click="SearchDeviceButton_Click"/>
+        <Button Content="Проверить" HorizontalAlignment="Left" Margin="10,172,0,0" VerticalAlignment="Top" Width="298" Height="33" Click="Button_Click"/>
+        <Label Content="Ваша предполагаемая личность:" HorizontalAlignment="Left" Margin="10,216,0,0" VerticalAlignment="Top"/>
+        <Label Content="Александр" HorizontalAlignment="Left" Margin="259,210,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="22"/>
+        <ListBox HorizontalAlignment="Left" Height="195" Margin="313,10,0,0" VerticalAlignment="Top" Width="284">
+            <System:String>Александр</System:String>
+            <System:String>Александра</System:String>
+            <System:String>Мария</System:String>
+            <System:String>Дамир</System:String>
+            <System:String>Богдан</System:String>
+            <System:String>Владимир</System:String>
+            <System:String>Геннадий</System:String>
+            <System:String>Дарья</System:String>
+        </ListBox>
 
     </Grid>
 </Window>
